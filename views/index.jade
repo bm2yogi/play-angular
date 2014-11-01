@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  h1= title
+  p Built with Angular on Express. ;-)
+    div(class='row')
+      div(class='span4 offset4')
+        div(ng-controller='MainController as main')
+          div(ng-repeat='product in main.products')
+            h1 {{product.name}} 
+              small {{product.price}}
+            h3 {{product.description}}
+            p
+              button(class='btn btn-primary' ng-show='product.canPurchase') Add to Cart
+
+            div(ng-controller="TabController as tab")
+              ul(class='nav nav-pills')
+                li(ng-click='tab.activate(1)' ng-class='active:tab.isActive')
+                  a Description
+                li(ng-click='tab.activate(2)' ng-class='active:tab.isActive') 
+                  a Details
+                li(ng-click='tab.activate(3)' ng-class='active:tab.isActive') 
+                  a Reviews
+
+              p
+                div(class='panel' ng-show='tab.isActive(1)') {{product.description}}
+                div(class='panel' ng-show='tab.isActive(2)') {{product.details}}
+                div(class='panel' ng-show='tab.isActive(3)') 
+                  p What people are saying about {{product.name}}
+                  blockquote(ng-repeat='review in product.reviews')
+                    b Stars: {{review.stars}}
+                    p {{review.body}}
+                    cite {{review.author}}
+                  form(name='reviewForm' ng-controller='ReviewController as reviewCtrl'
+                  ng-submit='reviewForm.$valid && reviewCtrl.addReview(product)' novalidate)
+                    blockquote
+                      b Stars: {{reviewCtrl.review.stars}}
+                      p {{reviewCtrl.review.body}}
+                      cite {{reviewCtrl.review.author}}
+                    p Review form is valid: {{reviewForm.$valid}}
+                    select(ng-model='reviewCtrl.review.stars' required)
+                      option(value='1') 1 Star
+                      option(value='2') 2 Stars
+                      option(value='3') 3 Stars
+                      option(value='4') 4 Stars
+                    textarea(ng-model='reviewCtrl.review.body' required)
+                    label by:
+                    input(type='email' ng-model='reviewCtrl.review.author' required)
+                    input(type='submit' value='submit' ng-enabled='reviewForm.$valid')
