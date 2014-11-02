@@ -1,5 +1,12 @@
 (function(){
 	var main = angular.module('myapp',[]);
+	
+	main.directive('productReview', function(){
+		return{
+			restrict:'E',
+			templateUrl:'/views/product-review.html'
+		};
+	})
 
 	main.controller('MainController',function(){
 		this.products = gems;
