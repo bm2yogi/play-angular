@@ -24,7 +24,7 @@ block content
                 div(class='panel' ng-show='tab.isActive(1)') {{product.description}}
                 div(class='panel' ng-show='tab.isActive(2)') {{product.details}}
                 div(class='panel' ng-show='tab.isActive(3)') 
-                  h3 What people are saying about {{product.name}}
+                  p What people like you are saying about {{product.name}}...
                   product-review(ng-repeat='review in product.reviews')
                   
                   form(name='reviewForm' ng-controller='ReviewController as reviewCtrl'

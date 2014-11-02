@@ -14,7 +14,7 @@
     });
 
 	main.controller('TabController', function(){
-		this.current = 3;
+		this.current = 1;
 		this.activate = function(tab){
 			this.current = tab;
 		};
