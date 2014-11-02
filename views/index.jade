@@ -12,7 +12,6 @@ block content
             h3 {{product.description}}
             p
               button(class='btn btn-sm' ng-show='product.canPurchase') Add to Cart
-
             div(ng-controller="TabController as tab")
               ul(class='nav nav-pills')
                 li(ng-click='tab.activate(1)' ng-class='{active: tab.isActive(1)}')
@@ -21,16 +20,13 @@ block content
                   a Details
                 li(ng-click='tab.activate(3)' ng-class='{active: tab.isActive(3)}') 
                   a Reviews
-
               p
                 div(class='panel' ng-show='tab.isActive(1)') {{product.description}}
                 div(class='panel' ng-show='tab.isActive(2)') {{product.details}}
                 div(class='panel' ng-show='tab.isActive(3)') 
-                  p What people are saying about {{product.name}}
-                  blockquote(ng-repeat='review in product.reviews')  
-                    b Stars: {{review.stars}}
-                    p {{review.body}}
-                    cite {{review.author}}
+                  h3 What people are saying about {{product.name}}
+                  product-review(ng-repeat='review in product.reviews')
+                  
                   form(name='reviewForm' ng-controller='ReviewController as reviewCtrl'
                   ng-submit='reviewForm.$valid && reviewCtrl.addReview(product)' novalidate)
                     blockquote

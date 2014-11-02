@@ -1,16 +1,8 @@
 (function(){
 	var main = angular.module('myapp',[]);
 	
-	main.directive('productReview', function(){
-		return{
-			restrict:'E',
-			templateUrl:'/views/product-review.html'
-		};
-	})
-
 	main.controller('MainController',function(){
 		this.products = gems;
-
 	});
 
     main.controller('ReviewController', function(){
@@ -22,7 +14,7 @@
     });
 
 	main.controller('TabController', function(){
-		this.current = 1;
+		this.current = 3;
 		this.activate = function(tab){
 			this.current = tab;
 		};
@@ -31,6 +23,14 @@
 			return this.current === tab;
 		};
 	});
+
+	main.directive('productReview', function(){
+		return{
+			restrict:"E",
+			templateUrl:"product-review.html"
+		};
+	});
+
 
 	var gems = [{
 		name:'Foo',
