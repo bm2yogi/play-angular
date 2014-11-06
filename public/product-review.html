@@ -1,5 +1,5 @@
-<blockquote>
-<p><b>Stars: {{review.stars}}</b></p>
-<p>{{review.body}}</p>
-<cite>-{{review.author}}</cite>
+<blockquote ng-repeat='review in product.reviews'>
+    <p><b>Stars: {{review.stars}}</b></p>
+    <p>{{review.body}}</p>
+    <cite>-{{review.author}}</cite>
 </blockquote>

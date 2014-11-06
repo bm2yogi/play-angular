@@ -5,22 +5,35 @@
 		this.products = gems;
 	});
 
-    main.controller('ReviewController', function(){
-        this.review = {};
-        this.addReview = function(product){
-            product.reviews.push(this.review);
-            this.review = {};
-        };
-    });
-
-	main.controller('TabController', function(){
-		this.current = 1;
-		this.activate = function(tab){
-			this.current = tab;
+	main.directive('productPanel', function(){
+		return{
+			restrict:'E',
+			templateUrl:'product-panel.html',
+			controller:function(){
+				this.current = 1;
+				this.activate = function(tab){
+					this.current = tab;
+				};
+				this.isActive = function(tab){
+					return this.current === tab;
+				};
+			},
+			controllerAs:'tab'
 		};
+	});
 
-		this.isActive = function(tab){
-			return this.current === tab;
+	main.directive('productReviewEditor', function(){
+		return{
+			restrict:'E',
+			templateUrl:'product-review-editor.html',
+			controllerAs:'reviewCtrl',
+			controller:function(){
+		        this.review = {};
+		        this.addReview = function(product){
+		            product.reviews.push(this.review);
+		            this.review = {};
+		        };
+			}
 		};
 	});
 
@@ -30,7 +43,6 @@
 			templateUrl:"product-review.html"
 		};
 	});
-
 
 	var gems = [{
 		name:'Foo',
@@ -55,5 +67,4 @@
 		canPurchase:true,
 		reviews:[]
 	}];
-
 })();

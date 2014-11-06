@@ -1,0 +1,20 @@
+<div>
+  <ul class='nav nav-pills'>
+    <li ng-click='tab.activate(1)' ng-class='{active: tab.isActive(1)}'>
+      <a>Description</a>
+    </li>
+    <li ng-click='tab.activate(2)' ng-class='{active: tab.isActive(2)}'>
+      <a>Details</a>
+    </li>
+    <li ng-click='tab.activate(3)' ng-class='{active: tab.isActive(3)}'>
+      <a>Reviews</a>
+    </li>
+  </ul>
+  <div class='panel' ng-show='tab.isActive(1)'>{{product.description}}</div>
+  <div class='panel' ng-show='tab.isActive(2)'>{{product.details}}</div>
+  <div class='panel' ng-show='tab.isActive(3)'> 
+    <p>What other people like you are saying about {{product.name}}...</p>
+    <product-review></product-review>
+    <product-review-editor></product-review-editor>
+  </div>
+</div>
