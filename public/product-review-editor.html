@@ -17,5 +17,5 @@
   <textarea ng-model='reviewCtrl.review.body' class='form-control' required></textarea>
   <label>by:</label>
   <input type='email' ng-model='reviewCtrl.review.author' class='form-control' required/>
-  <input type='submit' value='submit' ng-enabled='reviewForm.$valid' class='btn btn-primary'/>
+  <input type='submit' value='Submit' ng-disabled='!reviewForm.$valid' class='btn btn-primary'/>
 </form>

@@ -1,70 +1,21 @@
 (function(){
-	var main = angular.module('myapp',[]);
+	var main = angular.module('myapp',['products']);
 	
-	main.controller('MainController',function(){
-		this.products = gems;
-	});
+	main.controller('MainController',['$http','monkey', function($http, monkey){
+		var store = this;
+		store.products = [];
 
-	main.directive('productPanel', function(){
-		return{
-			restrict:'E',
-			templateUrl:'product-panel.html',
-			controller:function(){
-				this.current = 1;
-				this.activate = function(tab){
-					this.current = tab;
-				};
-				this.isActive = function(tab){
-					return this.current === tab;
-				};
-			},
-			controllerAs:'tab'
+		$http.get('/products.json').success(function(data){
+			console.log(monkey("business."))
+			store.products = data;
+		});
+	}]);
+
+	main.factory('monkey', function(){
+		return function(data){
+			return 'monkey ' + data;
 		};
-	});
+	})
 
-	main.directive('productReviewEditor', function(){
-		return{
-			restrict:'E',
-			templateUrl:'product-review-editor.html',
-			controllerAs:'reviewCtrl',
-			controller:function(){
-		        this.review = {};
-		        this.addReview = function(product){
-		            product.reviews.push(this.review);
-		            this.review = {};
-		        };
-			}
-		};
-	});
-
-	main.directive('productReview', function(){
-		return{
-			restrict:"E",
-			templateUrl:"product-review.html"
-		};
-	});
-
-	var gems = [{
-		name:'Foo',
-		price:21.95,
-		description:'Lorem ipsum dolor sit amet',
-		details:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
-		canPurchase:true,
-		reviews:[
-        {stars:4,body:'I love this thing',author:'jim@gmail.com'},{stars:3,body:'Best money I ever spent',author:'jack@gmail.com'},{stars:1,body:'I was not impressed',author:'john@gmail.com'},{stars:4,body:'I was very impressed',author:'phil@gmail.com'}]
-	},{
-		name:'Bar',
-		price:12.95,
-		description:'Lorem ipsum dolor sit amet',
-		details:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
-		canPurchase:true,
-		reviews:[]
-	},{
-		name:'Zini',
-		price:112.95,
-		description:'Lorem ipsum dolor sit amet',
-		details:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
-		canPurchase:true,
-		reviews:[]
-	}];
+	
 })();

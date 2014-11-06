@@ -1,0 +1,29 @@
+[{
+    "id":1,
+    "name":"Foo",
+    "price":21.95,
+    "description":"Lorem ipsum dolor sit amet",
+    "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc id unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+    "canPurchase":true,
+    "reviews":[
+    {"stars":4,"body":"I love this thing","author":"jim@gmail.com"},
+    {"stars":3,"body":"Best money I ever spent","author":"jack@gmail.com"},
+    {"stars":1,"body":"I was not impressed","author":"john@gmail.com"},
+    {"stars":4,"body":"I was very impressed","author":"phil@gmail.com"}]
+},{
+    "id":2,
+    "name":"Bar",
+    "price":12.95,
+    "description":"Lorem ipsum dolor sit amet",
+    "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+    "canPurchase":true,
+    "reviews":[]
+},{
+    "id":3,
+    "name":"Zini",
+    "price":112.95,
+    "description":"Lorem ipsum dolor sit amet",
+    "details":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor in unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+    "canPurchase":true,
+    "reviews":[]
+}]
