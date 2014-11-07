@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div(class="row")
+    div(class="span4 offset4")
+      h1= title +": a scoping exercise"
+  div(class="row")
+    div(class="span4 offset4" ng-controller="NFCWestController")
+      h2 Scoped Reference
+      h3{{conference}}
+      blockquote
+         p(ng-repeat="team in teams") The {{team.city}} {{team.name}}
+      hr
+  div(class="row")
+    div(class="span4 offset4" ng-controller="NFCEastController as nfcEast")
+      h2 Direct Reference
+      h3 {{nfcEast.conference}}
+      blockquote
+         p(ng-repeat="team in nfcEast.teams") The {{team.city}} {{team.name}}
+      hr
+  div(class="row")
+    div(class="span4 offset4")
+      h2 Directive
+      nfc-north-directive
+      hr
+  div(class="row")
+    div(class="span4 offset4")
+      h2 Directive
+      nfc-south-directive
