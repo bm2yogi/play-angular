@@ -2,9 +2,9 @@
 
     angular
       .module('myLogin', [])
-      .directive('login', loginDirective)
-      //.controller('LoginController', loginController)
-      .controller('RegistrationController', registrationController);
+      .directive('login', ['AuthService', loginDirective])
+      .controller('RegistrationController', registrationController)
+      .factory('AuthService', authService);
 
     function loginDirective(){
       return {
@@ -15,19 +15,46 @@
       };
     };
 
-    function loginController($scope){
+    function loginController(AuthService, $scope){
 
-      $scope.email = 'ffff';
-      $scope.password = 'dddd';
-      $scope.title = 'Foo';
+      $scope.title = '';
       $scope.authenticate = authenticate;
 
-      function authenticate(email, password)
+      function authenticate()
       {
-        console.log('email = ' + email);
-        console.log('password = ' + password);
+        AuthService.authenticate($scope.email, $scope.password)
+          .then(
+            function(token){
+
+              $scope.title = 'Token: ' + token;
+              $scope.email = undefined;
+              $scope.password = undefined;
+            },
+            function(reason){
+            $scope.title = 'Error: ' + reason;
+          });
       }
     }
+
+    function authService($q, $http){
+      var svc = {
+        authenticate : authenticate
+      };
+      return svc;
+
+      function authenticate(email, password){
+        var defer = $q.defer();
+
+        if (email == 'bm2yogi@gmail.com' && password == 'P@ssw0rd') {
+          defer.resolve('newToken');
+        }
+        else {
+          defer.reject('errorMessage');
+        }
+
+        return defer.promise;
+      }
+    };
 
     function registrationController($scope){
       var registration = $scope;
